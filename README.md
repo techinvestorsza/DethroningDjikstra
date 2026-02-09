@@ -6,7 +6,7 @@ A high-performance interactive visualization comparing **Traditional Dijkstra’
 
 ### The Problem: Traditional Dijkstra
 - **Mechanism**: Explores a map by always picking the "absolute nearest" point next.
-- **The Bottleneck**: Known as the **Sorting Barrier**. To find the nearest point, the computer must constantly re-sort its entire list of potential next steps ($O(m + n \log n)$).
+- **The Bottleneck**: Known as the **Sorting Barrier**. To find the nearest point, the computer must constantly re-sort its entire list of potential next steps.
 - **Visual Metaphor**: Imagine a single, massive line of passengers being checked one by one.
 
 ### The Solution: Hybrid Cluster-Pivot
