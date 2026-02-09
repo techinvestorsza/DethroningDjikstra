@@ -151,10 +151,10 @@ const App: React.FC = () => {
         <Header algoType={algoType} />
 
         {/* 2. MAIN CONTENT: Side-by-Side Layout */}
-        <div className="flex-1 flex min-h-0 gap-20">
+        <div className="flex-1 flex min-h-0 gap-12">
 
           {/* LEFT: Graph Visualization */}
-          <div className="flex-1 relative bg-black/50 rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center">
+          <div className="flex-1 relative bg-black rounded-3xl overflow-hidden shadow-2xl border border-gray-800 ring-1 ring-white/5 flex items-center justify-center">
             <GraphCanvas
               graph={graph}
               visited={visited}
@@ -170,13 +170,14 @@ const App: React.FC = () => {
               showClusters={algoType === 'hybrid'}
             />
 
-            <div className="absolute top-4 left-4 font-mono text-yellow-400 text-lg drop-shadow-md bg-black/40 px-2 rounded">
-              {actionText}
+            <div className="absolute top-6 left-6 z-50 pointer-events-none font-mono text-yellow-500 text-sm font-bold tracking-wider uppercase drop-shadow-lg bg-black/90 backdrop-blur-md px-4 py-2 rounded-lg border border-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.2)]">
+              <span className="text-gray-500 mr-2 font-semibold">STATUS:</span>
+              <span className="text-yellow-400 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">{actionText}</span>
             </div>
           </div>
 
           {/* RIGHT: Sidebar (Controls & Info) */}
-          <div className="w-96 flex flex-col gap-4 min-h-0">
+          <div className="w-96 flex flex-col gap-6 min-h-0 bg-gray-900/80 backdrop-blur-sm p-6 rounded-3xl border border-gray-800 shadow-2xl h-full">
 
             <ControlPanel
               algoType={algoType}

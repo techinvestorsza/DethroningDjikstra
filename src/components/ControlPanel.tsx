@@ -18,39 +18,50 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
     setIsRunning
 }) => {
     return (
-        <div className="flex flex-col gap-8 bg-gray-900/50 p-10 rounded-xl border border-gray-800">
+        <div className="flex flex-col gap-10 pt-2">
             <div className="space-y-3">
-                <label className="text-xs text-gray-500 uppercase tracking-wider font-semibold ml-1 block mb-1">Strategy</label>
+                <label className="text-[10px] text-gray-500 uppercase tracking-widest font-bold ml-1 block mb-2">Strategy Algorithm</label>
                 <div className="flex gap-4">
                     <button
                         onClick={() => { setIsRunning(false); setAlgoType('dijkstra'); resetGraph(); }}
-                        className={`flex-1 h-14 rounded-full text-sm font-bold tracking-wide transition-all duration-300 transform hover:scale-105 active:scale-95 border-2 ${algoType === 'dijkstra' ? 'bg-blue-600 border-blue-400 text-white shadow-[0_0_20px_rgba(37,99,235,0.6)] ring-2 ring-blue-500/30' : 'bg-gray-800 border-gray-700 text-gray-500 hover:bg-gray-700 hover:border-gray-500 hover:text-white hover:shadow-lg'}`}
+                        className={`flex-1 h-14 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 relative overflow-hidden group ${algoType === 'dijkstra' ? 'ring-2 ring-blue-500 shadow-[0_0_30px_rgba(59,130,246,0.3)]' : 'hover:bg-gray-800'}`}
                     >
-                        Traditional
+                        <div className={`absolute inset-0 opacity-20 ${algoType === 'dijkstra' ? 'bg-blue-600' : 'bg-transparent'}`}></div>
+                        <div className={`absolute inset-0 bg-gradient-to-br ${algoType === 'dijkstra' ? 'from-blue-600/80 to-blue-900/80' : 'from-gray-800 to-gray-900'} opacity-100`}></div>
+                        <span className={`relative z-10 ${algoType === 'dijkstra' ? 'text-white' : 'text-gray-400 group-hover:text-white'}`}>Traditional</span>
                     </button>
                     <button
                         onClick={() => { setIsRunning(false); setAlgoType('hybrid'); resetGraph(); }}
-                        className={`flex-1 h-14 rounded-full text-sm font-bold tracking-wide transition-all duration-300 transform hover:scale-105 active:scale-95 border-2 ${algoType === 'hybrid' ? 'bg-purple-600 border-purple-400 text-white shadow-[0_0_20px_rgba(147,51,234,0.6)] ring-2 ring-purple-500/30' : 'bg-gray-800 border-gray-700 text-gray-500 hover:bg-gray-700 hover:border-gray-500 hover:text-white hover:shadow-lg'}`}
+                        className={`flex-1 h-14 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 relative overflow-hidden group ${algoType === 'hybrid' ? 'ring-2 ring-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.3)]' : 'hover:bg-gray-800'}`}
                     >
-                        Hybrid
+                        <div className={`absolute inset-0 opacity-20 ${algoType === 'hybrid' ? 'bg-purple-600' : 'bg-transparent'}`}></div>
+                        <div className={`absolute inset-0 bg-gradient-to-br ${algoType === 'hybrid' ? 'from-purple-600/80 to-purple-900/80' : 'from-gray-800 to-gray-900'} opacity-100`}></div>
+                        <span className={`relative z-10 ${algoType === 'hybrid' ? 'text-white' : 'text-gray-400 group-hover:text-white'}`}>Hybrid</span>
                     </button>
                 </div>
             </div>
 
             <div className="space-y-3 flex-1 flex flex-col justify-end">
-                <label className="text-xs text-gray-500 uppercase tracking-wider font-semibold ml-1 block mb-1">Simulation</label>
-                <div className="flex gap-4">
+                <label className="text-[10px] text-gray-500 uppercase tracking-widest font-bold ml-1 block mb-2">Simulation Control</label>
+                <div className="flex gap-3">
                     <button
                         onClick={toggleRun}
-                        className={`flex-1 py-3 rounded-full font-bold tracking-wide transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg border ${isRunning ? 'bg-yellow-500 border-yellow-400 text-black hover:bg-yellow-400 hover:shadow-yellow-500/20' : 'bg-green-600 border-green-500 text-white hover:bg-green-500 hover:shadow-green-500/30'}`}
+                        className={`flex-[2] py-4 rounded-xl font-bold tracking-widest transition-all duration-200 shadow-lg border border-white/5 relative overflow-hidden group ${isRunning ? 'text-yellow-400' : 'text-green-400'}`}
                     >
-                        {isRunning ? 'PAUSE' : 'START'}
+                        <div className={`absolute inset-0 opacity-10 ${isRunning ? 'bg-yellow-500' : 'bg-green-500'} group-hover:opacity-20 transition-opacity`}></div>
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                            {isRunning ? (
+                                <><span className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span> PAUSE</>
+                            ) : (
+                                <><span className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-green-400 border-b-[5px] border-b-transparent ml-1"></span> START</>
+                            )}
+                        </span>
                     </button>
                     <button
                         onClick={resetGraph}
-                        className="px-6 py-3 bg-gray-800 border border-gray-600 text-gray-300 rounded-full font-medium hover:bg-red-900/30 hover:text-red-400 hover:border-red-500 transition-all duration-200 transform hover:scale-105 active:scale-95"
+                        className="flex-1 px-4 py-4 bg-gray-800/50 border border-gray-700 text-gray-400 rounded-xl font-bold hover:bg-gray-700 hover:text-white hover:border-gray-500 transition-all duration-200 text-xs tracking-wider uppercase"
                     >
-                        RESET
+                        Reset
                     </button>
                 </div>
             </div>
