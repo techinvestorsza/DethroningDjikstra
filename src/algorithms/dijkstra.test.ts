@@ -15,33 +15,7 @@ describe('Dijkstra Algorithm', () => {
 
         const graph: Graph = { nodes, edges: [], adjacencyList };
 
-        const generator = runDijkstra(graph, 0, 2);
-        let result = generator.next();
-        let finalState;
-        while (!result.done) {
-            finalState = result.value;
-            result = generator.next();
-        }
-        // Last yielded value before done might be the final step or close to it
-        // The generator yields the final result with done: true as per implementation?
-        // Let's check the return value.
-        // Actually, the generator returns the final state in the `value` property when done is true, OR yields it last.
-        // Looking at the code: it yields { ... finished: true } and then returns.
 
-        // So the last value we captured in the loop (when !done) is actually NOT the final one if we stop when done is true.
-        // We need to capture the return value if it exists, or the last yielded value.
-        // However, the generator implementation:
-        // yield { ... finished: true }; return;
-        // So the loop:
-        // 1. next() -> { value: State, done: false }
-        // ...
-        // n. next() -> { value: FinalState, done: false } -> wait, usually `return` makes done: true.
-        // But the code has `yield { ... finished: true }` then `return`.
-        // So `next()` will return `{ value: FinalState, done: false }`? No, yield is standard.
-        // `yield X` -> `{ value: X, done: false }`.
-        // Next call -> `return` -> `{ value: undefined, done: true }`.
-
-        // So we need to iterate until we find `finished: true`.
 
         const gen = runDijkstra(graph, 0, 2);
         let state;
